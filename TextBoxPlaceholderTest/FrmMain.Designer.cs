@@ -33,11 +33,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnFocus = new System.Windows.Forms.Button();
             this.textBox1 = new Com.RobFaust.Common.UserInterface.TextBoxPlaceholder();
             this.textBox2 = new Com.RobFaust.Common.UserInterface.TextBoxPlaceholder();
             this.textBox3 = new Com.RobFaust.Common.UserInterface.TextBoxPlaceholder();
             this.textBox4 = new Com.RobFaust.Common.UserInterface.TextBoxPlaceholder();
+            this.btnFocus = new System.Windows.Forms.Button();
             this.tlpMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,19 +107,6 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Initialize with No Placeholder and Text";
             // 
-            // btnFocus
-            // 
-            this.btnFocus.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnFocus.AutoSize = true;
-            this.tlpMain.SetColumnSpan(this.btnFocus, 2);
-            this.btnFocus.Location = new System.Drawing.Point(295, 33);
-            this.btnFocus.Name = "btnFocus";
-            this.btnFocus.Size = new System.Drawing.Size(210, 23);
-            this.btnFocus.TabIndex = 0;
-            this.btnFocus.Text = "Initial focus, click to query textbox values";
-            this.btnFocus.UseVisualStyleBackColor = true;
-            this.btnFocus.Click += new System.EventHandler(this.btnFocus_Click);
-            // 
             // textBox1
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -129,7 +116,6 @@
             this.textBox1.Placeholder = "Placeholder";
             this.textBox1.Size = new System.Drawing.Size(394, 20);
             this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Placeholder";
             // 
             // textBox2
             // 
@@ -162,6 +148,19 @@
             this.textBox4.Size = new System.Drawing.Size(394, 20);
             this.textBox4.TabIndex = 8;
             this.textBox4.Text = "Text";
+            // 
+            // btnFocus
+            // 
+            this.btnFocus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnFocus.AutoSize = true;
+            this.tlpMain.SetColumnSpan(this.btnFocus, 2);
+            this.btnFocus.Location = new System.Drawing.Point(295, 33);
+            this.btnFocus.Name = "btnFocus";
+            this.btnFocus.Size = new System.Drawing.Size(210, 23);
+            this.btnFocus.TabIndex = 0;
+            this.btnFocus.Text = "Initial focus, click to query textbox values";
+            this.btnFocus.UseVisualStyleBackColor = true;
+            this.btnFocus.Click += new System.EventHandler(this.btnFocus_Click);
             // 
             // FrmMain
             // 

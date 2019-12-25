@@ -7,6 +7,7 @@ namespace Com.RobFaust.Common.UserInterface
 {
     public class TextBoxPlaceholder : TextBox
     {
+        private bool isEmpty;
         private string placeholder;
 
         public TextBoxPlaceholder()
@@ -14,24 +15,50 @@ namespace Com.RobFaust.Common.UserInterface
             InitializeComponent();
             Enter += HandleEnter;
             Leave += HandleLeave;
+            TextChanged += HandleTextChanged;
+            if (string.IsNullOrEmpty(Text))
+            {
+                isEmpty = true;
+            }
+            else
+            {
+                isEmpty = false;
+            }
             OnLeave(EventArgs.Empty);
         }
 
         protected virtual void HandleEnter(object sender, EventArgs e)
         {
-            if (base.Text.Equals(Placeholder))
+            if (isEmpty)
             {
                 base.Text = string.Empty;
-                ForeColor = SystemColors.WindowText;
             }
+            ForeColor = SystemColors.WindowText;
         }
 
         protected virtual void HandleLeave(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(this.Text))
+            if (string.IsNullOrEmpty(base.Text))
             {
-                Text = Placeholder;
-                ForeColor = SystemColors.GrayText;
+                isEmpty = true;
+                base.Text = placeholder;
+                UpdateColor();
+            }
+            else
+            {
+                isEmpty = false;
+            }
+        }
+
+        protected virtual void HandleTextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Text))
+            {
+                isEmpty = true;
+            }
+            else
+            {
+                isEmpty = false;
             }
         }
 
@@ -42,7 +69,10 @@ namespace Com.RobFaust.Common.UserInterface
             set
             {
                 placeholder = value;
-                Text = value;
+                if (isEmpty)
+                {
+                    base.Text = value;
+                }
             }
         }
 
@@ -61,7 +91,13 @@ namespace Com.RobFaust.Common.UserInterface
         {
             if (string.IsNullOrEmpty(Text))
             {
-                Text = Placeholder;
+                isEmpty = true;
+                base.Text = Placeholder;
+                UpdateColor();
+            }
+            else
+            {
+                isEmpty = false;
             }
         }
 
@@ -69,7 +105,7 @@ namespace Com.RobFaust.Common.UserInterface
         {
             get
             {
-                if (base.Text.Equals(Placeholder))
+                if (isEmpty)
                 {
                     return string.Empty;
                 }
@@ -80,7 +116,29 @@ namespace Com.RobFaust.Common.UserInterface
             }
             set
             {
-                base.Text = value;
+                if (string.IsNullOrEmpty(value))
+                {
+                    isEmpty = true;
+                    base.Text = Placeholder;
+                }
+                else
+                {
+                    isEmpty = false;
+                    base.Text = value;
+                }
+                UpdateColor();
+            }
+        }
+
+        private void UpdateColor()
+        {
+            if (string.IsNullOrEmpty(Text))
+            {
+                ForeColor = SystemColors.GrayText;
+            }
+            else
+            {
+                ForeColor = SystemColors.WindowText;
             }
         }
     }
