@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace Com.RobFaust.Common.UserInterface
 {
-    class TextBoxPlaceholder : TextBox
+    public class TextBoxPlaceholder : TextBox
     {
         private string placeholder;
 
@@ -34,6 +35,7 @@ namespace Com.RobFaust.Common.UserInterface
             }
         }
 
+        [Category("Appearance"), DefaultValue(""), Description("The text shown, in light gray, when the value of the textbox is empty.")]
         public string Placeholder
         {
             get => placeholder;
