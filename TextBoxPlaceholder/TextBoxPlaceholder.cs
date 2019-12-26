@@ -52,13 +52,16 @@ namespace Com.RobFaust.Common.UserInterface
 
         protected virtual void HandleTextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Text))
+            if (Focused)
             {
-                isEmpty = true;
-            }
-            else
-            {
-                isEmpty = false;
+                if (string.IsNullOrEmpty(base.Text))
+                {
+                    isEmpty = true;
+                }
+                else
+                {
+                    isEmpty = false;
+                }
             }
         }
 
