@@ -7,62 +7,43 @@ namespace Com.RobFaust.Common.UserInterface
 {
     public class TextBoxPlaceholder : TextBox
     {
-        private bool isEmpty;
+        private bool isEmpty = true;
         private string placeholder;
+        private Color filledColor = SystemColors.WindowText;
+        private Color emptyColor = SystemColors.GrayText;
 
-        public TextBoxPlaceholder()
+        public TextBoxPlaceholder() : base()
         {
-            InitializeComponent();
-            Enter += HandleEnter;
-            Leave += HandleLeave;
-            TextChanged += HandleTextChanged;
-            if (string.IsNullOrEmpty(Text))
-            {
-                isEmpty = true;
-            }
-            else
-            {
-                isEmpty = false;
-            }
-            OnLeave(EventArgs.Empty);
+            
         }
 
-        protected virtual void HandleEnter(object sender, EventArgs e)
+        protected override void OnEnter(EventArgs e)
         {
             if (isEmpty)
             {
                 base.Text = string.Empty;
+                base.ForeColor = filledColor;
             }
-            ForeColor = SystemColors.WindowText;
+            base.OnEnter(e);
         }
 
-        protected virtual void HandleLeave(object sender, EventArgs e)
+        protected override void OnLeave(EventArgs e)
         {
-            if (string.IsNullOrEmpty(base.Text))
+            UpdateText(base.Text);
+            base.OnLeave(e);
+        }
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            if (string.IsNullOrEmpty(base.Text) || base.Text.Equals(Placeholder))
             {
                 isEmpty = true;
-                base.Text = placeholder;
-                UpdateColor();
             }
             else
             {
                 isEmpty = false;
             }
-        }
-
-        protected virtual void HandleTextChanged(object sender, EventArgs e)
-        {
-            if (Focused)
-            {
-                if (string.IsNullOrEmpty(base.Text))
-                {
-                    isEmpty = true;
-                }
-                else
-                {
-                    isEmpty = false;
-                }
-            }
+            base.OnTextChanged(e);
         }
 
         [Category("Appearance"), DefaultValue(""), Description("The text shown, in light gray, when the value of the textbox is empty.")]
@@ -72,39 +53,32 @@ namespace Com.RobFaust.Common.UserInterface
             set
             {
                 placeholder = value;
-                if (isEmpty)
-                {
-                    base.Text = value;
-                }
+                UpdateText(Text);
             }
         }
 
-        private void InitializeComponent()
+        public new Color ForeColor
         {
-            this.SuspendLayout();
-            // 
-            // TextBoxPlaceholder
-            // 
-            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.TextBoxPlaceholder_Layout);
-            this.ResumeLayout(false);
-
-        }
-
-        private void TextBoxPlaceholder_Layout(object sender, LayoutEventArgs e)
-        {
-            if (string.IsNullOrEmpty(Text))
+            get => filledColor;
+            set
             {
-                isEmpty = true;
-                base.Text = Placeholder;
+                filledColor = value;
                 UpdateColor();
             }
-            else
+        }
+
+        [Category("Appearance"), Description("Defines the color of the placeholder text")]
+        public Color PlaceholderColor
+        {
+            get => emptyColor;
+            set
             {
-                isEmpty = false;
+                emptyColor = value;
+                UpdateColor();
             }
         }
 
-        public new string Text
+        public new virtual string Text
         {
             get
             {
@@ -119,29 +93,34 @@ namespace Com.RobFaust.Common.UserInterface
             }
             set
             {
-                if (string.IsNullOrEmpty(value))
-                {
-                    isEmpty = true;
-                    base.Text = Placeholder;
-                }
-                else
-                {
-                    isEmpty = false;
-                    base.Text = value;
-                }
-                UpdateColor();
+                UpdateText(value);
             }
+        }
+
+        private void UpdateText(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                isEmpty = true;
+                base.Text = Placeholder;
+            }
+            else
+            {
+                isEmpty = false;
+                base.Text = text;
+            }
+            UpdateColor();
         }
 
         private void UpdateColor()
         {
-            if (string.IsNullOrEmpty(Text))
+            if (isEmpty)
             {
-                ForeColor = SystemColors.GrayText;
+                base.ForeColor = emptyColor;
             }
             else
             {
-                ForeColor = SystemColors.WindowText;
+                base.ForeColor = filledColor;
             }
         }
     }
