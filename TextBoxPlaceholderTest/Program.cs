@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Com.RobFaust.Common.UserInterface
+namespace Com.RjfTech.Common.UserInterface
 {
     static class Program
     {

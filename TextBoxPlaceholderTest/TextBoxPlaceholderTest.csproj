@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3A4213F4-7AA0-466C-AC40-038E1738D1B0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Com.RobFaust.Common.UserInterface</RootNamespace>
+    <RootNamespace>Com.RjfTech.Common.UserInterface</RootNamespace>
     <AssemblyName>TextBoxPlaceholderTest</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

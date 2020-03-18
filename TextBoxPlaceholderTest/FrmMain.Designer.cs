@@ -1,4 +1,4 @@
-﻿namespace Com.RobFaust.Common.UserInterface
+﻿namespace Com.RjfTech.Common.UserInterface
 {
     partial class FrmMain
     {
@@ -33,10 +33,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new Com.RobFaust.Common.UserInterface.TextBoxPlaceholder();
-            this.textBox2 = new Com.RobFaust.Common.UserInterface.TextBoxPlaceholder();
-            this.textBox3 = new Com.RobFaust.Common.UserInterface.TextBoxPlaceholder();
-            this.textBox4 = new Com.RobFaust.Common.UserInterface.TextBoxPlaceholder();
+            this.textBox1 = new Com.RjfTech.Common.UserInterface.TextBoxPlaceholder();
+            this.textBox2 = new Com.RjfTech.Common.UserInterface.TextBoxPlaceholder();
+            this.textBox3 = new Com.RjfTech.Common.UserInterface.TextBoxPlaceholder();
+            this.textBox4 = new Com.RjfTech.Common.UserInterface.TextBoxPlaceholder();
             this.btnFocus = new System.Windows.Forms.Button();
             this.tlpMain.SuspendLayout();
             this.SuspendLayout();

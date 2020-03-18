@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Com.RobFaust.Common.UserInterface
+namespace Com.RjfTech.Common.UserInterface
 {
     public class TextBoxPlaceholder : TextBox
     {
